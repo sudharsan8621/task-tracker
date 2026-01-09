@@ -16,10 +16,7 @@ const taskSchema = new mongoose.Schema(
         },
         priority: {
             type: String,
-            enum: {
-                values: ['Low', 'Medium', 'High'],
-                message: 'Priority must be Low, Medium, or High'
-            },
+            enum: ['Low', 'Medium', 'High'],
             default: 'Medium'
         },
         dueDate: {
@@ -28,10 +25,7 @@ const taskSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: {
-                values: ['Pending', 'Completed'],
-                message: 'Status must be Pending or Completed'
-            },
+            enum: ['Pending', 'Completed'],
             default: 'Pending'
         }
     },
@@ -39,8 +33,5 @@ const taskSchema = new mongoose.Schema(
         timestamps: true
     }
 );
-
-// Index for better query performance
-taskSchema.index({ status: 1, priority: 1, dueDate: 1 });
 
 module.exports = mongoose.model('Task', taskSchema);
