@@ -1,6 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://your-render-url.onrender.com/api';
 
-// Helper function for API calls
 const apiCall = async (endpoint, options = {}) => {
     try {
         const response = await fetch(`${API_URL}${endpoint}`, {
@@ -23,9 +22,7 @@ const apiCall = async (endpoint, options = {}) => {
     }
 };
 
-// Task API functions
 export const taskAPI = {
-    // Get all tasks with optional filters
     getAllTasks: async (filters = {}) => {
         const queryParams = new URLSearchParams();
         
@@ -40,12 +37,10 @@ export const taskAPI = {
         return apiCall(endpoint);
     },
 
-    // Get single task by ID
     getTaskById: async (id) => {
         return apiCall(`/tasks/${id}`);
     },
 
-    // Create new task
     createTask: async (taskData) => {
         return apiCall('/tasks', {
             method: 'POST',
@@ -53,7 +48,6 @@ export const taskAPI = {
         });
     },
 
-    // Update task
     updateTask: async (id, taskData) => {
         return apiCall(`/tasks/${id}`, {
             method: 'PUT',
@@ -61,7 +55,6 @@ export const taskAPI = {
         });
     },
 
-    // Delete task
     deleteTask: async (id) => {
         return apiCall(`/tasks/${id}`, {
             method: 'DELETE'
